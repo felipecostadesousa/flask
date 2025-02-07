@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Página Inicial</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+  </head>
+  <body>
+    <h1>Bem-vindo ao Sistema de Gestão de Futebol</h1>
+    <div class="container">
+      <a href="{{ url_for('competicoes') }}" class="btn btn-1 btn-sep icon-competicoes">Competições</a>
+      <a href="{{ url_for('arbitros') }}" class="btn btn-2 btn-sep icon-arbitros">Árbitros</a>
+      <a href="{{ url_for('titulos') }}" class="btn btn-3 btn-sep icon-titulos">Títulos</a>
+      <a href="{{ url_for('localizacoes') }}" class="btn btn-4 btn-sep icon-localizacoes">Localizações</a>
+    </div>
+  </body>
+</html>
