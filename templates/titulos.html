@@ -2,12 +2,27 @@
 <html lang="pt">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Títulos</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='titulos.css') }}"/>
   </head>
   <body>
-    <h1>Títulos</h1>
-    <p>Aqui você pode visualizar e gerenciar os títulos.</p>
+    <h1>Títulos Cadastrados</h1>
+    <p>Aqui você pode criar, remover, editar e visualizar os títulos cadastrados.</p>
+    <a href="{{ url_for('criar_titulo') }}" class="button-green">Criar</a>
+    <a href="{{ url_for('remover_titulo') }}" class="button-red">Remover</a>
+    <a href="{{ url_for('editar_titulo') }}" class="button-yellow">Editar</a>
     <a href="{{ url_for('home') }}" class="button">Voltar</a>
+    <div class="center">
+      {% for titulo in titulos %}
+      <div class="card">
+        <div class="general">
+          <h1>{{ titulo[1] }}</h1>
+          <h2>{{ titulo[0] }}</h2>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
   </body>
 </html>

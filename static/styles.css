@@ -5,7 +5,7 @@ body {
   padding: 50px;
 }
 
-h1 {
+h1, p {
   color: #fff;
 }
 
@@ -183,6 +183,42 @@ h1 {
 .button {
   text-decoration: none;
   background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 18px;
+  width: 200px;
+  text-align: center;
+}
+
+.button-red {
+  text-decoration: none;
+  background-color: #ce1218;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 18px;
+  width: 200px;
+  text-align: center;
+}
+
+.button-yellow {
+  text-decoration: none;
+  background-color: #FFC300;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 18px;
+  width: 200px;
+  text-align: center;
+}
+
+.button-green {
+  text-decoration: none;
+  background-color: #82e0aa;
   color: white;
   padding: 10px 20px;
   border-radius: 5px;

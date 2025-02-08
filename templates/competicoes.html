@@ -2,12 +2,45 @@
 <html lang="pt">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Competições</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='competicoes.css') }}"/>
   </head>
   <body>
-    <h1>Competições</h1>
-    <p>Aqui você pode visualizar e gerenciar as competições.</p>
+    <h1>Competições Cadastradas</h1>
+    <p>Aqui você pode visualizar, editar, criar e deletar as competições.</p>
+    <a href="{{ url_for('home') }}" class="button">Criar</a>
+    <a href="{{ url_for('home') }}" class="button">Remover</a>
+    <a href="{{ url_for('home') }}" class="button">Editar</a>
     <a href="{{ url_for('home') }}" class="button">Voltar</a>
+    <a href="{{ url_for('times') }}">
+      <div class="center">
+        {% for competicao in competicoes %}
+        <div class="card">
+          <div class="additional">
+            <div class="user-card">
+              <div class="level center">id: {{ competicao[0] }}</div>
+              <div class="points center">{{ competicao[2] }}</div>
+              <img src="{{ competicao[4] }}" alt="Imagem da competicao" class="imagem">
+            </div>
+            <div class="more-info">
+              <div class="coords">
+                <p>Divisão:  </p>
+                <p> {{ competicao[5] }}</p>
+              </div>
+              <div class="coords">
+                <p>Confederação:  </p>
+                <p> {{ competicao[3] }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="general">
+            <h1>{{ competicao[1] }}</h1>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </a>
   </body>
 </html>

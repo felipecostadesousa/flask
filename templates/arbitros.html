@@ -2,12 +2,47 @@
 <html lang="pt">
   <head>
     <meta charset="UTF-8" />
-    <title>Árbitros</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Árbitros</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='arbitros.css') }}"/>
   </head>
   <body>
-    <h1>Árbitros</h1>
-    <p>Aqui você pode visualizar e gerenciar os árbitros.</p>
+    <h1>Árbitros Cadastrados</h1>
+    <p>Aqui você pode visualizar, editar, criar e deletar os árbitros.</p>
+    <a href="{{ url_for('home') }}" class="button">Criar</a>
+    <a href="{{ url_for('home') }}" class="button">Remover</a>
+    <a href="{{ url_for('home') }}" class="button">Editar</a>
     <a href="{{ url_for('home') }}" class="button">Voltar</a>
+    <div class="center">
+      {% for arbitro in arbitros %}
+      <div class="card">
+        <div class="additional">
+          <div class="user-card">
+            <div class="level center">id: {{ arbitro[0] }}</div>
+            <div class="points center">{{ arbitro[4] }}</div>
+            <img src="{{ arbitro[5] }}" alt="Imagem do arbitro" class="imagem">
+          </div>
+          <div class="more-info">
+            <div class="coords">
+              <p>Nome Completo:  </p>
+              <p> {{ arbitro[2] }}</p>
+            </div>
+            <div class="coords">
+              <p>Data de Nascimento:  </p>
+              <p> {{ arbitro[3] }}</p>
+            </div>
+            <div class="coords">
+              <p>Início do Contrato:  </p>
+              <p> {{ arbitro[6] }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="general">
+          <h1>{{ arbitro[1] }}</h1>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
   </body>
 </html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Times</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='times.css') }}"/>
+  </head>
+  <body>
+    <h1>Times Cadastrados</h1>
+    <p>Aqui você pode visualizar, editar, criar e deletar os times.</p>
+    <a href="{{ url_for('home') }}" class="button">Criar</a>
+    <a href="{{ url_for('home') }}" class="button">Remover</a>
+    <a href="{{ url_for('home') }}" class="button">Editar</a>
+    <a href="{{ url_for('home') }}" class="button">Voltar</a>
+      <div class="center">
+        {% for time in times %}
+        <div class="card">
+          <div class="additional">
+            <div class="user-card">
+              <div class="level center">id: {{ time.id }}</div>
+              <div class="points center">{{ time.data_fundacao }}</div>
+              <img src="{{ time.imagem_escudo }}" alt="Escudo do {{ time.nome }}" class="arbitro-img">
+            </div>
+            <div class="more-info">
+              <div class="coords">
+                <p>Nome:  </p>
+                <p> {{ time.nome }}</p>
+              </div>
+              <div class="coords">
+                <p>Site:  </p>
+                <p> {{ time.site_time_url }}</p>
+              </div>
+              <div class="coords">
+                <p>Quantidade de Sócios:  </p>
+                <p> {{ time.quantidade_socios }}</p>
+              </div>
+              <div class="coords">
+                <p>Quantidade de Jogadores da Seleção:  </p>
+                <p> {{ time.quantidade_jogadores_selecao }}</p>
+              </div>
+              <div class="coords">
+                <p>Valor de Mercado:  </p>
+                <p> {{ time.valor_mercado }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="general">
+            <h1>{{ time.apelido }}</h1>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+  </body>
+</html>
