@@ -3,16 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Árbitros</title>
+    <title>Árbitros</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='arbitros.css') }}"/>
   </head>
   <body>
     <h1>Árbitros Cadastrados</h1>
-    <p>Aqui você pode visualizar, editar, criar e deletar os árbitros.</p>
-    <a href="{{ url_for('home') }}" class="button">Criar</a>
-    <a href="{{ url_for('home') }}" class="button">Remover</a>
-    <a href="{{ url_for('home') }}" class="button">Editar</a>
+    <p>Aqui você pode visualizar os árbitros cadastrados.</p>
     <a href="{{ url_for('home') }}" class="button">Voltar</a>
     <div class="center">
       {% for arbitro in arbitros %}
@@ -25,16 +22,13 @@
           </div>
           <div class="more-info">
             <div class="coords">
-              <p>Nome Completo:  </p>
-              <p> {{ arbitro[2] }}</p>
+              <p>Nome Completo: {{ arbitro[2] }}</p>
             </div>
             <div class="coords">
-              <p>Data de Nascimento:  </p>
-              <p> {{ arbitro[3] }}</p>
+              <p>Data de Nascimento: {{ arbitro[3] }}</p>
             </div>
             <div class="coords">
-              <p>Início do Contrato:  </p>
-              <p> {{ arbitro[6] }}</p>
+              <p>Início do Contrato: {{ arbitro[6] }}</p>
             </div>
           </div>
         </div>

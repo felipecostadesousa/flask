@@ -157,6 +157,102 @@ h1, p {
 	width: 60px;
 }
 
+.btn-5 {
+	background: #FFC300;
+	color: #fff;
+}
+
+.btn-5:hover {
+	background: #FFC300;
+}
+
+.btn-5:active {
+	background: #FFC300;
+	top: 2px;
+}
+
+.btn-5:before {
+	position: absolute;
+	height: 100%;
+	left: 0;
+	top: 0;
+	line-height: 3;
+	font-size: 140%;
+	width: 60px;
+}
+
+.btn-6 {
+	background: #5b2c6f;
+	color: #fff;
+}
+
+.btn-6:hover {
+	background: #5b2c6f;
+}
+
+.btn-6:active {
+	background: #5b2c6f;
+	top: 2px;
+}
+
+.btn-6:before {
+	position: absolute;
+	height: 100%;
+	left: 0;
+	top: 0;
+	line-height: 3;
+	font-size: 140%;
+	width: 60px;
+}
+
+.btn-7 {
+	background: #d35400;
+	color: #fff;
+}
+
+.btn-7:hover {
+	background: #d35400;
+}
+
+.btn-7:active {
+	background: #d35400;
+	top: 2px;
+}
+
+.btn-7:before {
+	position: absolute;
+	height: 100%;
+	left: 0;
+	top: 0;
+	line-height: 3;
+	font-size: 140%;
+	width: 60px;
+}
+
+.btn-8 {
+	background: #5dade2;
+	color: #fff;
+}
+
+.btn-8:hover {
+	background: #5dade2;
+}
+
+.btn-8:active {
+	background: #5dade2;
+	top: 2px;
+}
+
+.btn-8:before {
+	position: absolute;
+	height: 100%;
+	left: 0;
+	top: 0;
+	line-height: 3;
+	font-size: 140%;
+	width: 60px;
+}
+
 .icon-competicoes:before {
 	content: "\f1e3";
 }
@@ -171,6 +267,22 @@ h1, p {
 
 .icon-localizacoes:before {
 	content: "\f279";
+}
+
+.icon-estadios:before {
+  content: "\f015";
+}
+
+.icon-times:before {
+  content: "\f0c0"
+}
+
+.icon-tecnicos:before {
+  content: "\f044"
+}
+
+.icon-jogadores:before {
+  content: "\f118"
 }
 
 .container {

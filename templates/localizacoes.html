@@ -9,10 +9,7 @@
   </head>
   <body>
     <h1>Localizações Cadastradas</h1>
-    <p>Aqui você pode visualizar, editar, criar e deletar as localizações.</p>
-    <a href="{{ url_for('home') }}" class="button">Criar</a>
-    <a href="{{ url_for('home') }}" class="button">Remover</a>
-    <a href="{{ url_for('home') }}" class="button">Editar</a>
+    <p>Aqui você pode visualizar as localizações cadastradas no sistema.</p>
     <a href="{{ url_for('home') }}" class="button">Voltar</a>
     <div class="center">
       {% for localizacao in localizacoes %}
@@ -24,12 +21,10 @@
           </div>
           <div class="more-info">
             <div class="coords">
-              <p>Região:  </p>
-              <p> {{ localizacao[2] }}</p>
+              <p>Região: {{ localizacao[2] }}</p>
             </div>
             <div class="coords">
-              <p>Estado:  </p>
-              <p> {{ localizacao[3] }}</p>
+              <p>Estado: {{ localizacao[3] }}</p>
             </div>
           </div>
         </div>

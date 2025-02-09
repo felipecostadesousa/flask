@@ -10,8 +10,8 @@
 .card {
   width: 450px;
   height: 250px;
-  background-color: #2ecc71;
-  background: linear-gradient(#2ecc71, #2ecc71);
+  background-color: #fff;
+  background: linear-gradient(#f8f8f8, #fff);
   box-shadow: 0 8px 16px -8px rgba(0,0,0,0.4);
   border-radius: 6px;
   overflow: hidden;
@@ -80,7 +80,7 @@
   height: 100%;
 }
 
-.card .additional .more-info h1{
+.card .additional .more-info h1 {
   color: #fff;
   margin-bottom: 0;
 }
