@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Jogador</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='editar_jogador.css') }}"/>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+    const idInput = document.getElementById("id");
+    let jogadorAtual = {}; // Armazena os dados do banco de dados
+
+    function carregarDadosJogador(idJogador) {
+        fetch(`http://localhost:8080/time/jogador/${idJogador}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log("Jogador carregado do banco:", data);
+                jogadorAtual = data; // Armazena os dados carregados globalmente
+
+                // Preencher os campos do formulário com os valores carregados
+                Object.keys(jogadorAtual).forEach(chave => {
+                    const campo = document.getElementById(chave);
+                    if (campo) {
+                        campo.value = jogadorAtual[chave] ?? ""; // Evita undefined
+                    }
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar jogador:", error);
+                alert("Erro ao carregar dados do jogador.");
+            });
+    }
+
+    idInput.addEventListener("change", function () {
+        if (idInput.value.trim() !== "") {
+            carregarDadosJogador(idInput.value.trim());
+        }
+    });
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const idJogador = idInput.value;
+        if (!idJogador) {
+            alert("É necessário informar o ID do jogador para editar!");
+            return;
+        }
+
+        const campos = {
+            idJogador: "id",
+            nome: "nome",
+            apelido: "apelido",
+            dataNascimento: "dataNascimento",
+            nacionalidade: "nacionalidade",
+            imagemUrl: "imagem",
+            posicao: "posicao",
+            altura: "altura",
+            peDominante: "peDominante",
+            valorMercado: "valorMercado",
+            cidadeNascimento: "cidadeNascimento",
+            numeroCamisa: "numeroCamisa",
+            agente: "agente",
+            patrocinador: "patrocinador",
+            redeSocial: "redesSociais", // Alterando o nome do campo corretamente
+            dataInicioContrato: "contratoInicio",
+            dataFimContrato: "contratoFim",
+            idTime: "idTime"
+        };
+
+        let jogadorEditado = {};
+        Object.entries(campos).forEach(([campoFrontend, campoBackend]) => {
+            const input = document.getElementById(campoFrontend);
+            if (input) {
+                jogadorEditado[campoBackend] = input.value.trim() !== "" ? input.value.trim() : undefined;
+            }
+        });
+
+        console.log("Jogador preenchido do formulário:", jogadorEditado);
+        console.log("Jogador atual do banco:", jogadorAtual);
+
+        // Mesclar os valores do banco com os novos valores preenchidos pelo usuário
+        const jogadorFinal = Object.assign({}, jogadorAtual, jogadorEditado);
+
+        console.log("Jogador final antes do envio:", jogadorFinal);
+
+        // Enviar os dados para o backend
+        fetch(`http://localhost:8080/time/jogador/${idJogador}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(jogadorFinal)
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert("Jogador atualizado com sucesso!");
+            console.log("Resposta do servidor:", data);
+        })
+        .catch(error => {
+            alert("Erro ao editar jogador!");
+            console.error("Erro:", error);
+        });
+    });
+});
+
+
+
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="text">Editar Jogador</div>
+      <form action="#">
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="nome">
+            <div class="underline"></div>
+            <label for="">Nome Completo</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="apelido">
+            <div class="underline"></div>
+            <label for="">Apelido</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="dataNascimento">
+            <div class="underline"></div>
+            <label for="">Data de Nascimento</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="nacionalidade">
+            <div class="underline"></div>
+            <label for="">Nacionalidade</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="imagemUrl">
+            <div class="underline"></div>
+            <label for="">URL da Imagem</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="Posicao">
+            <div class="underline"></div>
+            <label for="">Posição</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="altura">
+            <div class="underline"></div>
+            <label for="">Altura</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="peDominante">
+            <div class="underline"></div>
+            <label for="">Pé Dominante</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="valorMercado">
+            <div class="underline"></div>
+            <label for="">Valor de Mercado</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="cidadeNascimento">
+            <div class="underline"></div>
+            <label for="">Cidade de Nascimento</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="numeroCamisa">
+            <div class="underline"></div>
+            <label for="">Número da Camisa</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="agente">
+            <div class="underline"></div>
+            <label for="">Agente</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="patrocinador">
+            <div class="underline"></div>
+            <label for="">Patrocinador</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="redeSocial">
+            <div class="underline"></div>
+            <label for="">Redes Sociais</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="dataInicioContrato">
+            <div class="underline"></div>
+            <label for="">Início do Contrato</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="dataFimContrato">
+            <div class="underline"></div>
+            <label for="">Fim do Contrato</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="idTime">
+            <div class="underline"></div>
+            <label for="">Time</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="id" required>
+            <div class="underline"></div>
+            <label for="">Id do Jogador</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data textarea">
+            <div class="form-row submit-btn">
+              <div class="input-data">
+                <div class="inner"></div>
+                <input type="submit" value="Editar">
+              </div>
+            </div>
+      </form>
+    </div>
+  </body>
+</html>

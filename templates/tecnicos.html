@@ -6,46 +6,83 @@
     <title>Técnicos</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='tecnicos.css') }}"/>
+    <script>
+      async function removerTecnico(){
+        const tecnicoId = prompt("Digite o ID do tecnico que deseja remover:");
+        if (!tecnicoId || isNaN(tecnicoId)) {
+          alert("ID inválido! Insira um número válido.");
+          return;
+        }
+        const url = `http://localhost:8080/time/Tecnico/${tecnicoId}`;
+        const options = {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" }
+        };
+        try {
+          const response = await fetch(url, options);
+          if (response.ok) {
+            alert(`Tecnico ID ${tecnicoId} removido com sucesso!`);
+            location.reload();
+          } 
+          else if (response.status === 404) {
+            alert("Tecnico não encontrado.");
+          } 
+          else {
+            alert("Erro ao remover tecnico. Tente novamente.");
+          }
+        } 
+        catch (error) {
+          console.error("Erro na requisição:", error);
+          alert("Erro ao conectar ao servidor.");
+        }
+      }
+    </script>
   </head>
   <body>
     <h1>Técnicos Cadastrados</h1>
-    <p>Aqui você pode criar, remover, editar e visualizar os técnicos cadastrados no sistema.</p>
-    <a href="{{ url_for('criar_titulo') }}" class="button-green">Criar</a>
-    <a href="{{ url_for('remover_titulo') }}" class="button-red">Remover</a>
-    <a href="{{ url_for('editar_titulo') }}" class="button-yellow">Editar</a>
+    <p>
+      Aqui você pode criar, remover, editar e visualizar os técnicos cadastrados
+      no sistema.
+    </p>
+    <a href="{{ url_for('criar_tecnicos') }}" class="button-green">Criar</a>
+    <a href="#" class="button-red" onclick="removerTecnico()">Remover</a>
     <a href="{{ url_for('home') }}" class="button">Voltar</a>
     <div class="center">
       {% for tecnico in tecnicos %}
       <div class="card">
         <div class="additional">
           <div class="user-card">
-            <div class="level center">id: {{ tecnico[0] }}</div>
-            <div class="points center">{{ tecnico[4] }}</div>
-            <img src="{{ tecnico[5] }}" alt="Imagem do tecnico" class="imagem">
+            <div class="level center">id: {{ tecnico["id"] }}</div>
+            <div class="points center">{{ tecnico["nacionalidade"] }}</div>
+            <img
+              src="{{ tecnico['imagemUrl'] }}"
+              alt="Imagem do tecnico"
+              class="imagem"
+            />
           </div>
           <div class="more-info">
             <div class="coords">
-              <p>Nome: {{ tecnico[1] }}</p>
+              <p>Nome: {{ tecnico["nome"] }}</p>
             </div>
             <div class="coords">
-              <p>Data de Nascimento: {{ tecnico[3] }}</p>
+              <p>Data de Nascimento: {{ tecnico["dataNascimento"] }}</p>
             </div>
             <div class="coords">
-              <p>Início do Contrato: {{ tecnico[6] }}</p>
+              <p>Início do Contrato: {{ tecnico["contratoInicio"] }}</p>
             </div>
             <div class="coords">
-              <p>Fim do Contrato: {{ tecnico[7] }}</p>
+              <p>Fim do Contrato: {{ tecnico["contratoFim"] }}</p>
             </div>
             <div class="coords">
-              <p>Cidade de Nascimento: {{ tecnico[8] }}</p>
+              <p>Cidade de Nascimento: {{ tecnico["cidadeNascimento"] }}</p>
             </div>
             <div class="coords">
-              <p>Time: COLOCAR TIME</p>
+              <p>Time: {{tecnico["time"]["nome"]}}</p>
             </div>
           </div>
         </div>
         <div class="general">
-          <h1>{{ tecnico[2] }}</h1>
+          <h1>{{ tecnico["apelido"] }}</h1>
         </div>
       </div>
       {% endfor %}

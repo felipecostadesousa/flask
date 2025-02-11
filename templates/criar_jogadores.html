@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Jogador</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='criar_jogadores.css') }}"/>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        form.addEventListener("submit", function (event) {
+          event.preventDefault(); 
+          const jogador = {
+            nome: document.getElementById("Nome Completo").value,
+            apelido: document.getElementById("Apelido").value,
+            dataNascimento: document.getElementById("Data de Nascimento").value,
+            nacionalidade: document.getElementById("Nacionalidade").value,
+            imagem: document.getElementById("URL da Imagem").value,
+            posicao: document.getElementById("Posição").value,
+            altura: document.getElementById("Altura").value,
+            peDominante: document.getElementById("Pé Dominante").value,
+            valorMercado: document.getElementById("Valor de Mercado").value,
+            cidadeNascimento: document.getElementById("Cidade de Nascimento").value,
+            numeroCamisa: document.getElementById("Número da Camisa").value,
+            agente: document.getElementById("Agente").value,
+            patrocinador: document.getElementById("Patrocinador").value,
+            redesSociais: document.getElementById("Redes Sociais").value,
+            contratoInicio: document.getElementById("Início do Contrato").value,
+            contratoFim: document.getElementById("Fim do Contrato").value,
+            idTime: document.getElementById("Time").value,
+            id: document.getElementById("Id").value
+          };
+          console.log(jogador)
+          fetch("http://localhost:8080/time/jogador", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(jogador)
+          })
+          .then(response => response.json())
+          .then(data => {
+            alert("Jogador criado com sucesso!");
+            console.log("Resposta do servidor:", data);
+          })
+          .catch(error => {
+            alert("Erro ao criar jogador!");
+            console.error("Erro:", error);
+          });
+        });
+      });
+      </script>
+      
+  </head>
+  <body>
+    <div class="container">
+      <div class="text">Criar Jogador</div>
+      <form action="#">
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="Nome Completo" required>
+            <div class="underline"></div>
+            <label for="">Nome Completo</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="Apelido" required>
+            <div class="underline"></div>
+            <label for="">Apelido</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="Data de Nascimento" required>
+            <div class="underline"></div>
+            <label for="">Data de Nascimento</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="Nacionalidade" required>
+            <div class="underline"></div>
+            <label for="">Nacionalidade</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="URL da Imagem" required>
+            <div class="underline"></div>
+            <label for="">URL da Imagem</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="Posição" required>
+            <div class="underline"></div>
+            <label for="">Posição</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="Altura" required>
+            <div class="underline"></div>
+            <label for="">Altura</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="Pé Dominante" required>
+            <div class="underline"></div>
+            <label for="">Pé Dominante</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="Valor de Mercado" required>
+            <div class="underline"></div>
+            <label for="">Valor de Mercado</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="Cidade de Nascimento" required>
+            <div class="underline"></div>
+            <label for="">Cidade de Nascimento</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="Número da Camisa" required>
+            <div class="underline"></div>
+            <label for="">Número da Camisa</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="Agente" required>
+            <div class="underline"></div>
+            <label for="">Agente</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="Patrocinador" required>
+            <div class="underline"></div>
+            <label for="">Patrocinador</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="Redes Sociais" required>
+            <div class="underline"></div>
+            <label for="">Redes Sociais</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="Início do Contrato" required>
+            <div class="underline"></div>
+            <label for="">Início do Contrato</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="Fim do Contrato" required>
+            <div class="underline"></div>
+            <label for="">Fim do Contrato</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="Time" required>
+            <div class="underline"></div>
+            <label for="">Time</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="Id" required>
+            <div class="underline"></div>
+            <label for="">Id do Jogador</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data textarea">
+            <div class="form-row submit-btn">
+              <div class="input-data">
+                <div class="inner"></div>
+                <input type="submit" value="Criar">
+              </div>
+            </div>
+      </form>
+    </div>
+  </body>
+</html>

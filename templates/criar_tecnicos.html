@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Técnico</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='criar_tecnicos.css') }}"/>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        form.addEventListener("submit", function (event) {
+          event.preventDefault(); 
+          const tecnico = {
+            id: document.getElementById("Id").value,
+            cidadeNascimento: document.getElementById("Cidade de Nascimento").value,
+            idTime: document.getElementById("Time").value,
+            nome: document.getElementById("Nome Completo").value,
+            apelido: document.getElementById("Apelido").value,
+            nacionalidade: document.getElementById("Nacionalidade").value,
+            imagem: document.getElementById("URL da Imagem").value,
+            contratoInicio: document.getElementById("Início do Contrato").value,
+            contratoFim: document.getElementById("Fim do Contrato").value,
+            dataNascimento: document.getElementById("Data de Nascimento").value,
+          };
+          console.log(tecnico)
+          fetch("http://localhost:8080/time/tecnico", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(tecnico)
+          })
+          .then(response => response.json())
+          .then(data => {
+            alert("Tecnico criado com sucesso!");
+            console.log("Resposta do servidor:", data);
+          })
+          .catch(error => {
+            alert("Erro ao criar tecnico!");
+            console.error("Erro:", error);
+          });
+        });
+      });
+      </script>
+      
+  </head>
+  <body>
+    <div class="container">
+      <div class="text">Criar Técnico</div>
+      <form action="#">
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="Nome Completo" required>
+            <div class="underline"></div>
+            <label for="">Nome Completo</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="Apelido" required>
+            <div class="underline"></div>
+            <label for="">Apelido</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="Data de Nascimento" required>
+            <div class="underline"></div>
+            <label for="">Data de Nascimento</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="Nacionalidade" required>
+            <div class="underline"></div>
+            <label for="">Nacionalidade</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="URL da Imagem" required>
+            <div class="underline"></div>
+            <label for="">URL da Imagem</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="Cidade de Nascimento" required>
+            <div class="underline"></div>
+            <label for="">Cidade de Nascimento</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="Início do Contrato" required>
+            <div class="underline"></div>
+            <label for="">Início do Contrato</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="Fim do Contrato" required>
+            <div class="underline"></div>
+            <label for="">Fim do Contrato</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data">
+            <input type="text" id="Time" required>
+            <div class="underline"></div>
+            <label for="">Time</label>
+          </div>
+          <div class="input-data">
+            <input type="text" id="Id" required>
+            <div class="underline"></div>
+            <label for="">Id do Tecnico</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-data textarea">
+            <div class="form-row submit-btn">
+              <div class="input-data">
+                <div class="inner"></div>
+                <input type="submit" value="Criar">
+              </div>
+            </div>
+      </form>
+    </div>
+  </body>
+</html>

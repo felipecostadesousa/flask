@@ -6,12 +6,43 @@
     <title>Estádios</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='estadios.css') }}"/>
+    <script>
+      async function removerEstadio(){
+        const estadioId = prompt("Digite o ID do Estadio que deseja remover:");
+        if (!estadioId || isNaN(estadioId)) {
+          alert("ID inválido! Insira um número válido.");
+          return;
+        }
+        const url = `http://localhost:8080/localizacao/Estadio/${estadioId}`;
+        const options = {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" }
+        };
+        try {
+          const response = await fetch(url, options);
+          if (response.ok) {
+            alert(`Estadio ID ${estadioId} removido com sucesso!`);
+            location.reload();
+          } 
+          else if (response.status === 404) {
+            alert("Estadio não encontrado.");
+          } 
+          else {
+            alert("Erro ao remover Estadio. Tente novamente.");
+          }
+        } 
+        catch (error) {
+          console.error("Erro na requisição:", error);
+          alert("Erro ao conectar ao servidor.");
+        }
+      }
+    </script>
   </head>
   <body>
     <h1>Estádios Cadastrados</h1>
     <p>Aqui você pode criar, remover, editar e visualizar os estádios cadastrados no sistema.</p>
-    <a href="{{ url_for('criar_titulo') }}" class="button-green">Criar</a>
-    <a href="{{ url_for('remover_titulo') }}" class="button-red">Remover</a>
+    <a href="{{ url_for('criar_jogadores') }}" class="button-green">Criar</a>
+    <a href="#" class="button-red" onclick="removerEstadio()">Remover</a>
     <a href="{{ url_for('editar_titulo') }}" class="button-yellow">Editar</a>
     <a href="{{ url_for('home') }}" class="button">Voltar</a>
     <div class="center">
@@ -19,20 +50,29 @@
       <div class="card">
         <div class="additional">
           <div class="user-card">
-            <div class="level center">id: {{ estadio[0] }}</div>
-            <div class="points center">{{ estadio[1] }}</div>
+            <div class="level center">id: {{ estadio["id"] }}</div>
+            <div class="points center">{{ estadio["dataFundacao"] }}</div>
           </div>
           <div class="more-info">
             <div class="coords">
-              <p>Capacidade: {{ estadio[3] }}</p>
+              <p>Capacidade: {{ estadio["capacidadePessoas"] }}</p>
             </div>
             <div class="coords">
-              <p>Localizacão: COLOCAR LOCALIZAÇÃO</p>
+              <p>País: {{ estadio["localizacao"]["pais"] }}</p>
+            </div>
+            <div class="coords">
+              <p>Região: {{ estadio["localizacao"]["regiao"] }}</p>
+            </div>
+            <div class="coords">
+              <p>Estado: {{ estadio["localizacao"]["estado"] }}</p>
+            </div>
+            <div class="coords">
+              <p>Cidade: {{ estadio["localizacao"]["cidade"] }}</p>
             </div>
           </div>
         </div>
         <div class="general">
-          <h1>{{ estadio[2] }}</h1>
+          <h1>{{ estadio["nome"] }}</h1>
         </div>
       </div>
       {% endfor %}

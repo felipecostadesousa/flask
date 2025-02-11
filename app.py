@@ -4,9 +4,9 @@ from functions.get_competicoes import get_competicoes
 from functions.get_titulos import get_titulos
 from functions.get_localizacoes import get_localizacoes
 from functions.get_times import get_times
-from functions.get_estadios import get_estadios
-from functions.get_tecnicos import get_tecnicos
-from functions.get_jogadores import get_jogadores
+from get_estadios import get_estadios
+from get_tecnicos import get_tecnicos
+from get_jogadores import get_jogadores
 
 app = Flask(__name__)
 
@@ -54,17 +54,17 @@ def jogadores():
   jogadores = get_jogadores()
   return render_template("jogadores.html", jogadores=jogadores)
 
-@app.route("/criar_titulo")
-def criar_titulo():
-  return render_template("criar_titulo.html")
+@app.route("/criar_jogadores")
+def criar_jogadores():
+  return render_template("criar_jogadores.html")
 
-@app.route("/editar_titulo")
-def editar_titulo():
-  return render_template("editar_titulo.html")
+@app.route("/editar_jogador")
+def editar_jogador():
+  return render_template("editar_jogador.html")
 
-@app.route("/remover_titulo")
-def remover_titulo():
-  return render_template("remover_titulo.html")
+@app.route("/criar_tecnicos")
+def criar_tecnicos():
+  return render_template("criar_tecnicos.html")
 
 if __name__ == "__main__":
   app.run(debug=True)

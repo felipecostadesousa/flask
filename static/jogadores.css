@@ -93,6 +93,27 @@
   flex-direction: row;
 }
 
+.coords p {
+  margin: 2px 0;
+  line-height: 1.2;
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.card-link .card {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.card-link:hover .card {
+  transform: scale(1.02);
+}
+
+
 .imagem {
   width: 100px;
   height: 100px;
