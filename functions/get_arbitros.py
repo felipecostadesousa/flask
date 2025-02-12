@@ -12,7 +12,7 @@ def get_arbitros():
   try:
     conn = psycopg2.connect(**DB_CONFIG)
     cursor = conn.cursor()
-    cursor.execute("SELECT id, apelido, nome, data_nascimento, nacionalidade, imagemURL, contrato_inicio FROM Arbitro;")
+    cursor.execute("SELECT id, nome, apelido, nacionalidade, imagem, contrato_inicio, data_nascimento FROM Arbitro;")
     arbitros = cursor.fetchall()
     cursor.close()
     conn.close()

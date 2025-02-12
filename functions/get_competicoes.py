@@ -12,7 +12,7 @@ def get_competicoes():
   try:
     conn = psycopg2.connect(**DB_CONFIG)
     cursor = conn.cursor()
-    cursor.execute("SELECT id, nome, ano, confederacao, imagemURL, divisao FROM Competicao;")
+    cursor.execute("SELECT id, nome, ano, confederacao, quantidade_times FROM Competicao;")
     competicoes = cursor.fetchall()
     cursor.close()
     conn.close()

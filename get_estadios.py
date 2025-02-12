@@ -1,6 +1,6 @@
 import requests
 
-def get_estadios(url="http://localhost:8080/localizacao/Estadio"):
+def get_estadios(url="http://localhost:8080/Estadio"):
   try:
     response = requests.get(url)
     response.raise_for_status()

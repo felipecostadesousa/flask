@@ -43,7 +43,6 @@
     <p>Aqui você pode criar, remover, editar e visualizar os estádios cadastrados no sistema.</p>
     <a href="{{ url_for('criar_jogadores') }}" class="button-green">Criar</a>
     <a href="#" class="button-red" onclick="removerEstadio()">Remover</a>
-    <a href="{{ url_for('editar_titulo') }}" class="button-yellow">Editar</a>
     <a href="{{ url_for('home') }}" class="button">Voltar</a>
     <div class="center">
       {% for estadio in estadios %}
